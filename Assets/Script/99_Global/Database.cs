@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,9 @@ public enum CharID
 }
 public enum CardID
 {
-    八公
+    墨靛1,
+    墨靛2,
+    墨靛3
 }
 public enum SoundID
 {
@@ -41,6 +44,16 @@ public enum TriggerID
     TurnBegin,
     UseCard,
     OppTurnBegin
+}
+
+
+
+[Flags]
+public enum 加己
+{
+    加己1=1,
+    加己2=2,
+    加己3=4,
 }
 
 /*
