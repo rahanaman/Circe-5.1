@@ -17,19 +17,36 @@ public enum SaveDataField
     Stage
 }
 
-public class SaveData
+public class SaveData 
 {
     private static string SAVE = "save";
 
+    private static SaveData _instance;
+    public static SaveData Instance//싱글톤
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new SaveData();
+            }
+            return _instance;
+        }
+    }
+    public SaveData(){ //생성자
+
+    }
+
+
+
     private CharID _id;
-    
-    
     private int _maxHP;
     private int _currentHP;
     private List<CardID> _cards;
     private 속성 _속성;
     private int _world;
     private int _stage;
+
 
     /*
      * 세이브로드 디버그 테스트용
@@ -49,12 +66,53 @@ public class SaveData
         
 
     }
-    */
+    *///세이브 로드 디버깅
 
     public void InitSaveData(CharID id)
     {
+        PlayerBase playerBase = DataBase.Instance.PlayerBaseList[(int)id];
+        _maxHP = playerBase.MaxHP;
+        _currentHP = playerBase.MaxHP;
+        _cards = playerBase.Cards;
+        _속성 = playerBase.초기속성;
+        _world = 0;
+        _stage = 0;
 
     }
+
+    public void Save()
+    {
+        string prefs = CSVReader.Write(GetSaveData());
+        PlayerPrefs.SetString(SAVE, prefs);
+
+        Debug.Log("Save완료");
+
+    }
+
+    public void Load()
+    {
+        if (PlayerPrefs.HasKey(SAVE))
+        {
+            var data = CSVReader.Read(PlayerPrefs.GetString(SAVE));
+            int len = Enum.GetValues(typeof(SaveDataField)).Length;
+            for (int i = 0; i < len; ++i)
+            {
+
+
+                LoadSaveData((SaveDataField)i, data[i]);
+            }
+        }
+        else
+        {
+            Debug.Log("Save 파일 없음");
+        }
+    }
+
+    public void Remove() //게임 클리어 시 기존 저장 데이터 삭제
+    {
+        PlayerPrefs.DeleteKey(SAVE);
+    }
+
 
     private void LoadSaveData(SaveDataField field, string data)
     {
@@ -124,33 +182,7 @@ public class SaveData
 
     
 
-    public void Save()
-    {
-        string prefs = CSVReader.Write(GetSaveData());
-        PlayerPrefs.SetString(SAVE, prefs);
-
-        Debug.Log("Save완료");
-
-    }
-
-    public void Load()
-    {
-        if (PlayerPrefs.HasKey(SAVE))
-        {
-            var data = CSVReader.Read(PlayerPrefs.GetString(SAVE));
-            int len = Enum.GetValues(typeof(SaveDataField)).Length;
-            for (int i =0; i<len; ++i){
-                
-
-                LoadSaveData((SaveDataField)i, data[i]);
-            }
-        }
-        else
-        {
-            Debug.Log("Save 파일 없음");
-        }
-    }
-
+    
 }
 
 public class CSVReader

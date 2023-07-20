@@ -8,7 +8,7 @@ public class CardSaveData //세이브 되어야하는 데이터(파도 누적, 사용횟수 등)
     public int[] Data { get; private set; }
 }
 
-public class CardBase : MonoBehaviour
+public class CardBase
 {
     
 }
