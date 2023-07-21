@@ -6,6 +6,10 @@ using UnityEngine;
 using UnityEditor;
 
 
+public enum DataLoadID //resource에서 읽어올 자료들 순서
+{
+
+}
 
 public enum CharID
 {
@@ -27,6 +31,11 @@ public enum CardID
     카드1,
     카드2,
     카드3
+}
+
+public enum EffectID
+{
+    화상,
 }
 public enum SoundID
 {
@@ -66,10 +75,6 @@ public enum TriggerID
     */
 
 }
-
-
-
-
 
 
 [Flags]
