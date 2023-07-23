@@ -35,7 +35,14 @@ public enum CardID
 
 public enum EffectID
 {
-    화상,
+    경감,
+    파도,
+    썰물,
+    재생,
+    익사,
+    파도의힘,
+    빙결
+
 }
 public enum SoundID
 {
@@ -62,16 +69,20 @@ public enum CardStateID
 
 public enum TriggerID
 {
-    TurnBegin,
     UseCard,
-    OppTurnBegin
+    TurnBegin,
+    TurnEnd,
+    OppTurnBegin,
+    OppTurnEnd
+
     /*
     * 트리거 발동 순서:
     * 턴 시작
     * turnBegin 트리거 발동
     * OppTurnBegin 트리거 발동
     * 
-    * 플레이어 턴시작 -> 플레이어 내턴시작 트리거 -> 에너미 적턴시작 트리거 -> 적 턴 시작 -> 에너미 내턴시작 트리거 -> 플레이어 적턴시작 트리거 -> 반복
+    * 플레이어 내턴 시작 트리거-> 에너미 적 턴 시작 트리거 -> 플레이어 턴 시작 고정 루틴 ->플레이어 내턴 종료 트리거 -> 에너미 적턴 종료 트리거 -> 플레이어 턴 종료 고정 루틴 -> 
+    * 에너미 내턴 시작 트리거 -> 플레이어 적 턴시작 트리거 -> 적 턴 시작 고정 루틴 -> 에너미 내턴 종료 트리거 -> 플레이어 적턴종료 트리거 -> 적 턴 종료 고정 루틴 -> 반복
     */
 
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 
 public abstract class ActionBase // Battle에서 이루어질 수 있는 모든 행동 
 {
-
     public Dictionary<TriggerID, TriggeredAction> TriggeredEvents;
     public abstract void Action(params CreatureOnBattleData[] targets); //BattlePanelManager에서 가져온 OnBattleData에서 수정이 이루어짐
 }
