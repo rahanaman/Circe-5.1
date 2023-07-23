@@ -19,9 +19,7 @@ public class debugger : MonoBehaviour
     void Start()
     {
 
-        LayoutRebuilder.ForceRebuildLayoutImmediate(_text.GetComponent<RectTransform>());
-        Debug.Log(_text.GetComponent<RectTransform>().rect.height);
-        Debug.Log(_text.name);
+       
     }
 
     // Update is called once per frame
@@ -38,6 +36,9 @@ public class debugger : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(text.GetComponent<RectTransform>());
         image.sizeDelta = new Vector2(image.rect.width, text.GetComponent<RectTransform>().rect.height);
         LayoutRebuilder.ForceRebuildLayoutImmediate(image.GetComponent<RectTransform>());
+     LayoutRebuilder.ForceRebuildLayoutImmediate(_text.GetComponent<RectTransform>());
+        Debug.Log(_text.GetComponent<RectTransform>().rect.height);
+        Debug.Log(_text.name);
     }
     */
     /*

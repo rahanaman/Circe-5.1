@@ -42,7 +42,7 @@ public class SaveData
     private CharID _id;
     private int _maxHP;
     private int _currentHP;
-    private List<CardID> _cards;
+    private List<CardOnBattleData> _cards;
     private 加己 _加己;
     private int _world;
     private int _stage;
