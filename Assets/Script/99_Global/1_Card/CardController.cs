@@ -1,15 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using UnityEngine;
 
 public class CardController: MonoBehaviour
 {
-    
+    private ICardHandler _handler;
+    public CardController() { }
+
+
+    public void SetMode(CardStateID id)
+    {
+        switch (id)
+        {
+            case CardStateID.전투:
+                _handler = new 전투CardHandler();
+                break;
+            case CardStateID.보상:
+
+                break;
+            case CardStateID.패널:
+                break;
+            case CardStateID.도감:
+                break;
+        }
+    }
 }
 
 
 public interface ICardHandler
 {
+    
     void MouseEnter();
     void MouseDown();
     void MouseExit();
@@ -17,11 +38,11 @@ public interface ICardHandler
 
 public class 전투CardHandler : ICardHandler
 {
-    private CardController _card;
-    public 전투CardHandler(CardController card)
+    public 전투CardHandler()
     {
-        _card = card;
+
     }
+    
     public void MouseEnter()
     {
         //cardcontroller battlePanel로 전달

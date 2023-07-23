@@ -12,7 +12,7 @@ public class debugger : MonoBehaviour
     [SerializeField] Scripter scripter;
     void Start()
     {
-        scripter.FitScriptContent(strings[0]);
+        scripter.Script(strings[0]);
     }
 
     // Update is called once per frame

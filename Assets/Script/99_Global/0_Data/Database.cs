@@ -61,10 +61,10 @@ public enum StateID
 }
 public enum CardStateID
 {
-    CardPanel,
-    HandCard,
-    Store,
-    PrizeCard
+    전투,
+    보상,
+    패널,
+    도감
 }
 
 public enum TriggerID
