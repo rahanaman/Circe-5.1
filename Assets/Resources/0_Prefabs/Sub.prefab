@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4261494312649350609}
   - component: {fileID: 4261494312649350615}
   - component: {fileID: 4261494312649350614}
-  - component: {fileID: 3958821392338088501}
   - component: {fileID: 4261494312649350612}
   m_Layer: 5
   m_Name: SubText
@@ -36,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -10}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4261494312649350615
@@ -81,19 +80,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\uC544\uC9C4\uD22C\uD0C0\n\uC544\uC9C4\uD22C\uD0C0\uC544\uC9C4\uD22C\uD0C0\uC544\uC9C4\uD22C\uD0C0\uC544\uC9C4\uD22C\uD0C0\uC544\uC9C4\uD22C\uD0C0"
---- !u!114 &3958821392338088501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4261494312649350608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a335b26ce4d52ae47ab7bb8a7af2369a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hasParent: 1
 --- !u!114 &4261494312649350612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +105,7 @@ GameObject:
   - component: {fileID: 4261494312823904403}
   - component: {fileID: 4261494312823904401}
   - component: {fileID: 4261494312823904400}
+  - component: {fileID: 8627552491439327598}
   m_Layer: 5
   m_Name: Sub
   m_TagString: Untagged
@@ -184,3 +171,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8627552491439327598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4261494312823904402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a335b26ce4d52ae47ab7bb8a7af2369a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parentRect: {fileID: 0}
+  _rect: {fileID: 0}
+  _text: {fileID: 0}
