@@ -15,12 +15,17 @@ public class CardHandController : MonoBehaviour // 카드 패 정렬하는 Hand 오브젝�
     private void Awake()
     {
         _hand = gameObject.GetComponent<Transform>();
-        _quatLeft = Quaternion.Euler(_rotLeft);
-        _quatRight = Quaternion.Euler(_rotRight);
     }
 
     private void Init()
     {
         _cards = new List<CardView>();
+        _quatLeft = Quaternion.Euler(_rotLeft);
+        _quatRight = Quaternion.Euler(_rotRight);
+    }
+
+    private void AddCard(CardView card)
+    {
+
     }
 }

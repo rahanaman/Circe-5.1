@@ -48,26 +48,26 @@ public class Player헬레나Base : PlayerBase
     }
 }
 
-public class Player스킬라Base : PlayerBase
+public class Player아우라Base : PlayerBase
 {
     public override int MaxHP { get; protected set; }
     public override List<CardID> Cards { get; protected set; }
     public override 속성 초기속성 { get; protected set; }
 
-    public Player스킬라Base() : base()
+    public Player아우라Base() : base()
     {
         MaxHP = 100;
         Cards = new List<CardID>();
     }
 }
 
-public class Player디아나Base : PlayerBase
+public class Player레아Base : PlayerBase
 {
     public override int MaxHP { get; protected set; }
     public override List<CardID> Cards { get; protected set; }
     public override 속성 초기속성 { get; protected set; }
 
-    public Player디아나Base() : base()
+    public Player레아Base() : base()
     {
         MaxHP = 100;
         Cards = new List<CardID>();

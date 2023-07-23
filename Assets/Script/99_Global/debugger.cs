@@ -15,10 +15,13 @@ public class debugger : MonoBehaviour
      */
     string[] strings = new string[] { "absdfda\r\ndafllkjlkasdjfljasdlkfjsdlfjlskdjflsajdlfjldajfl\r\ndfjlakdjflsajfldjalfjldsakjflsdjlfjslfkjsdlkfj" };
 
-    [SerializeField] CardController _card;
+    [SerializeField] GameObject _text;
     void Start()
     {
-       
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_text.GetComponent<RectTransform>());
+        Debug.Log(_text.GetComponent<RectTransform>().rect.height);
+        Debug.Log(_text.name);
     }
 
     // Update is called once per frame

@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class Scripter: MonoBehaviour    //Text를 가지고 있는 GamgObject에 넣어두기
 {
-
-    
     private RectTransform _parentRect;
     private RectTransform _rect;
     private Text _text;

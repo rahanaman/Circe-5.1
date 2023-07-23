@@ -13,9 +13,9 @@ public enum DataLoadID //resource에서 읽어올 자료들 순서
 
 public enum CharID
 {
-    헬레나,
-    스킬라,
-    디아나,
+    헬레네,
+    아우라,
+    레아,
     쥬피테르
 }
 
@@ -87,6 +87,36 @@ public enum TriggerID
 
 }
 
+public enum ActionID
+{
+    Action1,
+    Action2,
+    Action3,
+    Action4,    
+    Action5,
+    Action6,
+    Action7,
+    Action8,
+    Action9,
+    Action10,
+    Action11,
+    Action12,
+}
+public enum 가중치ID
+{
+    양자리,
+    황소자리,
+    쌍둥이자리,
+    게자리,
+    사자자리,
+    처녀자리,
+    천칭자리,
+    전갈자리,
+    궁수자리,
+    염소자리,
+    물병자리,
+    물고기자리
+}
 
 [Flags]
 public enum 속성
@@ -127,14 +157,14 @@ public class DataBase
         {
             switch ((CharID)i)
             {
-                case CharID.헬레나:
+                case CharID.헬레네:
                     PlayerBaseList[i] = new Player헬레나Base();
                     break;
-                case CharID.스킬라:
-                    PlayerBaseList[i] = new Player스킬라Base();
+                case CharID.레아:
+                    PlayerBaseList[i] = new Player레아Base();
                     break;
-                case CharID.디아나:
-                    PlayerBaseList[i] = new Player디아나Base();
+                case CharID.아우라:
+                    PlayerBaseList[i] = new Player아우라Base();
                     break;
                 case CharID.쥬피테르:
                     PlayerBaseList[i] = new Player쥬피테르Base();
