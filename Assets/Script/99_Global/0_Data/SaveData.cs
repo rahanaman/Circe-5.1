@@ -13,16 +13,17 @@ public enum SaveDataField
     CurrentHP,
     Cards,
     加己,
+    Effect,
     World,
     Stage
 }
 
-public class SaveData 
+public class SaveData
 {
     private static string SAVE = "save";
 
     private static SaveData _instance;
-    public static SaveData Instance//教臂沛
+    public static SaveData Instance //教臂沛
     {
         get
         {
@@ -43,6 +44,7 @@ public class SaveData
     private int _maxHP;
     private int _currentHP;
     private List<CardOnBattleData> _cards;
+    private List<EffectOnBattleData> _effects;
     private 加己 _加己;
     private int _world;
     private int _stage;
@@ -66,6 +68,40 @@ public class SaveData
         
 
     }
+
+    //1瞒 荐沥
+    private void Start()
+    {
+
+        //Load();
+        _maxHP = 100;
+        _currentHP = 50;
+        _cards = new List<CardOnBattleData>()
+        {
+            new CardOnBattleData(CardID.墨靛1, new int[]{ 1,0}),
+            new CardOnBattleData(CardID.墨靛1, new int[]{ 1,1}),
+            new CardOnBattleData(CardID.墨靛2, new int[]{}),
+
+        };
+        _加己 = 加己.加己1 | 加己.加己3;
+        _world = 3;
+        _stage = 1;
+
+        Save();
+        Load();
+        foreach(var card in _cards)
+        {
+            Debug.Log(card.ID);
+            foreach(int data in card.Data)
+            {
+                Debug.Log(data);
+            }
+            Debug.Log(card.ID+" 场");
+        }
+       
+
+
+    }
     *///技捞宏 肺靛 叼滚彪
 
     public void InitSaveData(CharID id)
@@ -83,6 +119,7 @@ public class SaveData
     public void Save()
     {
         string prefs = CSVReader.Write(GetSaveData());
+        Debug.Log(prefs);
         PlayerPrefs.SetString(SAVE, prefs);
 
         Debug.Log("Save肯丰");
@@ -126,15 +163,38 @@ public class SaveData
                 break;
             case SaveDataField.Cards:
                 _cards = SetCardList();
-                List<CardID> SetCardList()
+                List<CardOnBattleData> SetCardList()
                 {
-                    var cardArr = data.Split(','); 
-                    List<CardID> cards = new List<CardID>();
+                    var cardArr = CSVReader.ReadCard(data);
+                    List<CardOnBattleData> cards = new List<CardOnBattleData>();
                     foreach(var card in cardArr)
                     {
-                        cards.Add((CardID)int.Parse(card));
+                        var arr = card.Split(',');
+                        
+                        var data = Array.ConvertAll(arr, int.Parse);
+
+                        CardOnBattleData cardData = new CardOnBattleData((CardID)data[0],data.Skip(1).ToArray());
+                        cards.Add(cardData);
                     }
                     return cards;
+                }
+                break;
+            case SaveDataField.Effect:
+                _effects = SetEffectList();
+                List<EffectOnBattleData> SetEffectList()
+                {
+                    var effectArr = CSVReader.ReadCard(data);
+                    List<EffectOnBattleData> effects = new List<EffectOnBattleData>();
+                    foreach (var effect in effectArr)
+                    {
+                        var arr = effect.Split(',');
+
+                        var data = Array.ConvertAll(arr, int.Parse);
+
+                        EffectOnBattleData effectData = new EffectOnBattleData((EffectID)data[0], data.Skip(1).ToArray());
+                        effects.Add(effectData);
+                    }
+                    return effects;
                 }
                 break;
             case SaveDataField.加己:
@@ -162,9 +222,16 @@ public class SaveData
         {
             string str = "";
             int len = _cards.Count;
-            for(int i = 0; i< len; ++i)
+            for (int i = 0; i < len; ++i)
             {
-                str += (int)_cards[i]+",";
+                str += "\'";
+                str += (int)_cards[i].ID + ",";
+                foreach (int data in _cards[i].Data)
+                {
+                    str += data + ",";
+                }
+                str = str.Substring(0, str.Length - 1);
+                str += "\',";
             }
 
             str = str.Substring(0, str.Length - 1);
@@ -172,7 +239,29 @@ public class SaveData
             return str;
         }
         //加己
-        saveFile.Add((int)_加己+"");
+        saveFile.Add((int)_加己 + "");
+        //effect
+        saveFile.Add(GetEffectList());
+        string GetEffectList()
+        {
+            string str = "";
+            int len = _effects.Count;
+            for (int i = 0; i < len; ++i)
+            {
+                str += "\'";
+                str += (int)_effects[i].ID + ",";
+                foreach (int data in _effects[i].Data)
+                {
+                    str += data + ",";
+                }
+                str = str.Substring(0, str.Length - 1);
+                str += "\',";
+            }
+
+            str = str.Substring(0, str.Length - 1);
+
+            return str;
+        }
         //world 柳青档
         saveFile.Add(_world+"");
         //stage柳青档
@@ -188,8 +277,10 @@ public class SaveData
 public class CSVReader
 {
     static string SPLIT_RE = @",(?=(?:[^""]*""[^""]*"")*(?![^""]*""))";
+    static string CARD_SPLIT_RE = @",(?=(?:[^']*'[^']*')*(?![^']*'))";
     static string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
     static char[] TRIM_CHARS = { '\"' };
+    static char[] CARD_TRIM_CHARS = { '\'' };
 
     public static string Write(params string[] data)
     {
@@ -198,7 +289,6 @@ public class CSVReader
         {
             saveFile += "\"" + s + "\"";
             saveFile += ",";
-            Debug.Log(saveFile);
         }
         saveFile = saveFile = saveFile.Substring(0, saveFile.Length - 1);
 
@@ -215,5 +305,16 @@ public class CSVReader
         }
         return values;
         
+    }
+
+    public static string[] ReadCard(string file)
+    {
+        var values = Regex.Split(file, CARD_SPLIT_RE);
+        int len = values.Length;
+        for (int i = 0; i < len; ++i)
+        {
+            values[i] = values[i].TrimStart(CARD_TRIM_CHARS).TrimEnd(CARD_TRIM_CHARS).Replace("\\", "");
+        }
+        return values;
     }
 }

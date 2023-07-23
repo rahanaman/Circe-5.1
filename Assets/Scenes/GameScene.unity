@@ -220,7 +220,8 @@ PrefabInstance:
     - target: {fileID: 4261494312649350614, guid: 097846a787f5b1341a923826b2c8c255, type: 3}
       propertyPath: m_Text
       value: "<color=olive>\uC544\uC9C4\uD22C\uD0C0</color>\n\n\uB871\uCE74\uC5B4\uB85C
-        '\uC88B\uC740 \uBC24 \uBCF4\uB0B4\uAE38'\uC774\uB77C\uB294 \uB73B\uC774\uC57C."
+        '\uC88B\uC740 \uBC24 \uBCF4\uB0B4\uAE38'\uC774\uB77C\uB294 \uB73B\uC774\uC57C.\n1234567890
+        >< >,,< \u314E..\u314E"
       objectReference: {fileID: 0}
     - target: {fileID: 4261494312823904402, guid: 097846a787f5b1341a923826b2c8c255, type: 3}
       propertyPath: m_Name
@@ -501,6 +502,14 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4935839805316860294, guid: 6a55404fb08410d44ac74ae0a322798e, type: 3}
+      propertyPath: "_\uC81C\uBAA9Rect"
+      value: 
+      objectReference: {fileID: 2006228853}
+    - target: {fileID: 4935839805316860294, guid: 6a55404fb08410d44ac74ae0a322798e, type: 3}
+      propertyPath: "_\uC81C\uBAA9Text"
+      value: 
+      objectReference: {fileID: 2006228854}
     - target: {fileID: 7277371149624511178, guid: 6a55404fb08410d44ac74ae0a322798e, type: 3}
       propertyPath: m_Size.y
       value: 400
@@ -863,6 +872,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 869935986, guid: 6a55404fb08410d44ac74ae0a322798e, type: 3}
   m_PrefabInstance: {fileID: 889863785}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &2006228853 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1075174512, guid: 6a55404fb08410d44ac74ae0a322798e, type: 3}
+  m_PrefabInstance: {fileID: 889863785}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2006228854 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1075174513, guid: 6a55404fb08410d44ac74ae0a322798e, type: 3}
+  m_PrefabInstance: {fileID: 889863785}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2372562517651606102
 PrefabInstance:
   m_ObjectHideFlags: 0

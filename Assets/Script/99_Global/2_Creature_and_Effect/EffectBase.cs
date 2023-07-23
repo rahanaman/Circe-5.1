@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class EffectOnBattleData
 {
+    public EffectOnBattleData(EffectID id)
+    {
+        ID = id;
+    }
+    public EffectOnBattleData(EffectID id, int[] data)
+    {
+        ID = id;
+        Data = data;
+    }
     public EffectID ID { get; private set; }
     public int[] Data { get; private set; }
 }

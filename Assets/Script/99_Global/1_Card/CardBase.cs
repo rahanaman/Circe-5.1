@@ -5,6 +5,17 @@ using UnityEngine;
 
 public class CardOnBattleData //세이브 되어야하는 데이터(파도 누적, 사용횟수 등)
 {
+    public CardOnBattleData() { }
+    public CardOnBattleData(CardID id)
+    {
+        ID = id;
+    }
+    public CardOnBattleData(CardID id, int[] data)
+    {
+        ID = id;
+        Data = data;
+    }
+
     public CardID ID { get; private set; }
     public int[] Data { get; private set; }
 }
