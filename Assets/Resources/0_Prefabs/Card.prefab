@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 869935988}
   - component: {fileID: 8871466832809000177}
   m_Layer: 5
-  m_Name: Text
+  m_Name: DescText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 10}
+  m_AnchoredPosition: {x: 0, y: 200}
   m_SizeDelta: {x: -20, y: 40}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1075174514
@@ -160,7 +160,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e31c65a985fc54c47b820e456c97831d, type: 3}
+    m_Font: {fileID: 12800000, guid: cc095ac60b706374c9e20ce106fbedfd, type: 3}
     m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
@@ -329,6 +329,36 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &8428819929384631624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4443430695508035920}
+  m_Layer: 0
+  m_Name: Desc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4443430695508035920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8428819929384631624}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 612.0691, y: 240.95935, z: -462.3984}
+  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8992799132447878494}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8992799131480917788
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,6 +547,7 @@ RectTransform:
   - {fileID: 869935987}
   - {fileID: 8992799131630522837}
   - {fileID: 7913609920940699843}
+  - {fileID: 4443430695508035920}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -595,3 +626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69100f24239d9ef47abb52131222667f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _NameText: {fileID: 0}
+  _NameRect: {fileID: 0}
+  _DescText: {fileID: 0}
+  _DescRect: {fileID: 0}
