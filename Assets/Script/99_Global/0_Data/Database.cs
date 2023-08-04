@@ -12,8 +12,17 @@ public enum DataLoadID //resource에서 읽어올 자료들 순서
     
 }
 
+public enum GameStatusID
+{
+    map,
+    battleBegin,
+    battleEnd,
+    
+}
+
 public enum BattleDataID//전투할때 Effect에 의헤 연산이 들어갈 수 있는 데이터
 {
+    None, // 트리거를 통해 사용되는 부류
     공격,
     방어,
     익사,
@@ -21,7 +30,7 @@ public enum BattleDataID//전투할때 Effect에 의헤 연산이 들어갈 수 있는 데이터
     빙결
    
 
-} // 작은 숫자 우선 연산, ㄱ같은 숫자에서는 곱셉 우선 연산
+} // 작은 숫자 우선 연산, 같은 숫자에서는 곱셉 우선 연산
 
 public enum DataCalcID //연산 ID
 {
@@ -90,7 +99,7 @@ public enum CardStateID
 
 public enum TriggerID
 {
-    UseCard,
+    None, // 카드 사용처럼 다른 입력을 통해서 이루어지는 트리거, 루틴 진행에 따라 자동적으로 콜백되어야 하는 트리거를 제외한 모든 트리거
     TurnBegin,
     TurnEnd,
     OppTurnBegin,
@@ -102,7 +111,7 @@ public enum TriggerID
     * turnBegin 트리거 발동
     * OppTurnBegin 트리거 발동
     * 
-    * 플레이어 내턴 시작 트리거-> 에너미 적 턴 시작 트리거 -> 플레이어 턴 시작 고정 루틴 ->플레이어 내턴 종료 트리거 -> 에너미 적턴 종료 트리거 -> 플레이어 턴 종료 고정 루틴 -> 
+    * 플레이어 내턴 시작 트리거 -> 에너미 적 턴 시작 트리거 -> 플레이어 턴 시작 고정 루틴 ->플레이어 내턴 종료 트리거 -> 에너미 적턴 종료 트리거 -> 플레이어 턴 종료 고정 루틴 -> 
     * 에너미 내턴 시작 트리거 -> 플레이어 적 턴시작 트리거 -> 적 턴 시작 고정 루틴 -> 에너미 내턴 종료 트리거 -> 플레이어 적턴종료 트리거 -> 적 턴 종료 고정 루틴 -> 반복
     */
 

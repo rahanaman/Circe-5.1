@@ -9,6 +9,7 @@ public abstract class CreatureOnBattleData
     public int CurrentHP { get; protected set; }
     public int Defence { get; protected set; }
     public EffectID Effects { get; protected set; }
+    public DataCalc DataCalcs { get; protected set; }
 
     public abstract CreatureBase GetCreatureBase();
 

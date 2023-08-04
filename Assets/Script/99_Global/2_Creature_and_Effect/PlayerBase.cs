@@ -9,10 +9,6 @@ public class PlayerOnBattleData : CreatureOnBattleData // BattlePanelManager俊辑
     public CharID ID { get; private set;}
     public 加己 加己 { get; private set;}
     public List<CardOnBattleData> Cards { get; private set; }
-    
-
-    public int World { get; private set; }
-    public int Stage { get; private set; }
     public override CreatureBase GetCreatureBase()
     {
         return DataBase.Instance.PlayerBaseList[(int)ID];

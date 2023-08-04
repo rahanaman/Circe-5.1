@@ -15,7 +15,8 @@ public enum SaveDataField
     加己,
     Effect,
     World,
-    Stage
+    Stage,
+    GameStatus
 }
 
 public class SaveData
@@ -48,6 +49,7 @@ public class SaveData
     private 加己 _加己;
     private int _world;
     private int _stage;
+    private GameStatusID _gameStatus;
 
 
 
@@ -61,6 +63,7 @@ public class SaveData
         _加己 = playerBase.檬扁加己;
         _world = 0;
         _stage = 0;
+        _gameStatus = GameStatusID.map;
 
     }
 
@@ -154,6 +157,9 @@ public class SaveData
             case SaveDataField.Stage:
                 _stage = int.Parse(data);
                 break;
+            case SaveDataField.GameStatus:
+                _gameStatus =(GameStatusID) int.Parse(data);
+                break;
         }
     }
 
@@ -214,6 +220,8 @@ public class SaveData
         saveFile.Add(_world+"");
         //stage柳青档
         saveFile.Add(_stage+"");
+        //game status
+        saveFile.Add((int)_gameStatus + "");
         return saveFile.ToArray();
     }
 
