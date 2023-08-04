@@ -237,7 +237,7 @@ public class DataCalc
 
     private void Init()
     {
-        for(int i = 0; i <= factors.Length; ++i)
+        for(int i = 0; i < factors.Length; ++i)
         {
             if((i & 1) == 1) factors[i] = 0.0;// È¦¼ö - µ¡¼À
             else factors[i] = 1.0;
@@ -258,16 +258,17 @@ public class DataCalc
     public int Data(int data)
     {
         double calc = data;
-        for (int i = 0; i <= factors.Length; ++i)
+        for (int i = 0; i < factors.Length; ++i)
         {
             if ((i & 1) == 1)// È¦¼ö - µ¡¼À
             {
                 calc += factors[i];
+                
             }
             else
             {
                 calc *= factors[(int)i];
-                calc = Math.Round(calc);
+                calc = Math.Truncate(calc);
             }
         }
         return (int)Math.Round(calc);
