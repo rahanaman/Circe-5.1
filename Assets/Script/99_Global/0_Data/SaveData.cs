@@ -50,59 +50,7 @@ public class SaveData
     private int _stage;
 
 
-    /*
-     * 세이브로드 디버그 테스트용
-    private void Start()
-    {
 
-        Load();
-        _maxHP = 100;
-        _currentHP = 50;
-        _cards = new List<CardID>() { CardID.카드1, CardID.카드1, CardID.카드3 };
-        _속성 = 속성.속성1 | 속성.속성3;
-        _world = 3;
-        _stage = 1;
-
-        Save();
-        Load();
-        
-
-    }
-
-    //1차 수정
-    private void Start()
-    {
-
-        //Load();
-        _maxHP = 100;
-        _currentHP = 50;
-        _cards = new List<CardOnBattleData>()
-        {
-            new CardOnBattleData(CardID.카드1, new int[]{ 1,0}),
-            new CardOnBattleData(CardID.카드1, new int[]{ 1,1}),
-            new CardOnBattleData(CardID.카드2, new int[]{}),
-
-        };
-        _속성 = 속성.속성1 | 속성.속성3;
-        _world = 3;
-        _stage = 1;
-
-        Save();
-        Load();
-        foreach(var card in _cards)
-        {
-            Debug.Log(card.ID);
-            foreach(int data in card.Data)
-            {
-                Debug.Log(data);
-            }
-            Debug.Log(card.ID+" 끝");
-        }
-       
-
-
-    }
-    *///세이브 로드 디버깅
 
     public void InitSaveData(CharID id)
     {
@@ -318,3 +266,58 @@ public class CSVReader
         return values;
     }
 }
+
+
+/*
+ * 세이브로드 디버그 테스트용
+private void Start()
+{
+
+    Load();
+    _maxHP = 100;
+    _currentHP = 50;
+    _cards = new List<CardID>() { CardID.카드1, CardID.카드1, CardID.카드3 };
+    _속성 = 속성.속성1 | 속성.속성3;
+    _world = 3;
+    _stage = 1;
+
+    Save();
+    Load();
+
+
+}
+
+//1차 수정
+private void Start()
+{
+
+    //Load();
+    _maxHP = 100;
+    _currentHP = 50;
+    _cards = new List<CardOnBattleData>()
+    {
+        new CardOnBattleData(CardID.카드1, new int[]{ 1,0}),
+        new CardOnBattleData(CardID.카드1, new int[]{ 1,1}),
+        new CardOnBattleData(CardID.카드2, new int[]{}),
+
+    };
+    _속성 = 속성.속성1 | 속성.속성3;
+    _world = 3;
+    _stage = 1;
+
+    Save();
+    Load();
+    foreach(var card in _cards)
+    {
+        Debug.Log(card.ID);
+        foreach(int data in card.Data)
+        {
+            Debug.Log(data);
+        }
+        Debug.Log(card.ID+" 끝");
+    }
+
+
+
+}
+*///세이브 로드 디버깅

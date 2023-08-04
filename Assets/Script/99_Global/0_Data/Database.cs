@@ -4,11 +4,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEditor;
-
+using UnityEditor.AssetImporters;
+using System.Reflection;
 
 public enum DataLoadID //resource에서 읽어올 자료들 순서
 {
+    
+}
 
+public enum BattleDataID//전투할때 Effect에 의헤 연산이 들어갈 수 있는 데이터
+{
+    공격,
+    방어,
+    익사,
+    파도의힘,
+    빙결
+   
+
+} // 작은 숫자 우선 연산, ㄱ같은 숫자에서는 곱셉 우선 연산
+
+public enum DataCalcID //연산 ID
+{
+    mult_1,
+    add_1,
+    mult_2,
+    add_2,
+    mult_3,
 }
 
 public enum CharID
@@ -129,6 +150,7 @@ public enum 속성
 
 public class DataBase
 {
+    public CardBase[] CardBaseList { get; private set; }
     public PlayerBase[] PlayerBaseList { get; private set; }
     public MonsterBase[] MonsterBaseList { get; private set; }
 
@@ -186,5 +208,68 @@ public class DataBase
 
             }
         }
+    }
+
+    private void GetCardBase()
+    {
+        CardBaseList = new CardBase[System.Enum.GetValues(typeof(CardID)).Length];
+        for(int i=0;i < CardBaseList.Length; i++)
+        {
+            switch ((CardID)i)
+            {
+                default:
+                    break;
+            }
+        }
+    }
+}
+
+
+public class DataCalc
+{
+    public double[] factors;
+
+    public DataCalc()
+    {
+        factors = new double[Enum.GetValues(typeof(DataCalcID)).Length];
+        Init();
+    }
+
+    private void Init()
+    {
+        for(int i = 0; i <= factors.Length; ++i)
+        {
+            if((i & 1) == 1) factors[i] = 0.0;// 홀수 - 덧셈
+            else factors[i] = 1.0;
+        }
+    }
+    public void GetFactor(DataCalcID id, double data)
+    {
+        int idx = (int)id;
+        if ((idx & 1) == 1)
+        {
+            factors[idx] += data;
+        }
+        else
+        {
+            factors[(int)id] *= data;
+        }
+    }
+    public int Data(int data)
+    {
+        double calc = data;
+        for (int i = 0; i <= factors.Length; ++i)
+        {
+            if ((i & 1) == 1)// 홀수 - 덧셈
+            {
+                calc += factors[i];
+            }
+            else
+            {
+                calc *= factors[(int)i];
+                calc = Math.Round(calc);
+            }
+        }
+        return (int)Math.Round(calc);
     }
 }

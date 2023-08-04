@@ -1,25 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class debugger : MonoBehaviour
 {
-
+    
     /*
      * [SerializeField] GameObject sub;
     [SerializeField] GameObject SubCon;
     [SerializeField] RectTransform image;
     [SerializeField] Scripter scripter;
      */
-    string[] strings = new string[] { "absdfda\r\ndafllkjlkasdjfljasdlkfjsdlfjlskdjflsajdlfjldajfl\r\ndfjlakdjflsajfldjalfjldsakjflsdjlfjslfkjsdlkfj" };
+    string[] strings = new string[] { "absdfda\r\ndafllkjlkasdjfljasdlkfjsdlfjlskdjflsajdlfjldajfl\r\ndfjlakdjflsajfldjalfjldsakjflsdjlfjslfkjsdlkfjabsdfda\r\ndafllkjlkasdjfljasdlkfjsdlfjlskdjflsajdlfjldajfl\r\ndfjlakdjflsajfldjalfjldsakjflsdjlfjslfkjsdlkfj" };
 
-    [SerializeField] GameObject _text;
+    [SerializeField] CardView _card;
+    [SerializeField] Transform _canvas;
     void Start()
-    {
-
-       
+    { 
+        
     }
 
     // Update is called once per frame
@@ -30,7 +31,7 @@ public class debugger : MonoBehaviour
     }
 
     /*
-    private void 스크린터디버깅()
+    private void 스크립터디버깅()
     {
         text.GetComponent<Text>().text = strings[0];
         LayoutRebuilder.ForceRebuildLayoutImmediate(text.GetComponent<RectTransform>());
@@ -48,5 +49,7 @@ public class debugger : MonoBehaviour
         Instantiate(sub, SubCon.transform);
         ob.GetComponent<Scripter>().Script("absdfda\r\ndafllkjlkasdjfljasdlkfjsdlfjlskdjflsajdlfjldajfl\r\ndfjlakdjflsajflddfadfd\n\nfgfdifhkajsdfjkhfkjhdkhskfhakdjhfkjznjalfjldsakjflsdjlfjslfkjsdlkfj");
     }
+    CardView card = Instantiate(_card, _canvas);
+        card.SetDesc(strings[0]);
     */
 }

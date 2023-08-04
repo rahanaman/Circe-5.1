@@ -11,13 +11,19 @@ public abstract class ActionBase // Battle에서 이루어질 수 있는 모든 행동
 
 public class 공격Action : ActionBase
 {
+    public 공격Action() { }
+    public 공격Action(int damage)
+    {
+        Damage = damage;
+    }
+    
     public int Damage { get; private set; }
 
     public override void Action(params CreatureOnBattleData[] targets)
     {
         foreach (var target in targets)
         {
-
+            
         }
     }
 }

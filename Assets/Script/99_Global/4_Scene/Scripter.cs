@@ -7,6 +7,10 @@ using UnityEngine.UI;
 
 public class Scripter: MonoBehaviour    //Text를 가지고 있는 GamgObject에 넣어두기
 {
+    /// <summary>
+    /// 텍스트 UI 상위에 Recttransform을 가진 부모오브젝트에 넣어두기
+    /// 하위 textUI는 RectTransform+contentsizefitter, Pivot은 0.5, 1으로 설정
+    /// </summary>
     private RectTransform _parentRect;
     private RectTransform _rect;
     private Text _text;
@@ -23,9 +27,14 @@ public class Scripter: MonoBehaviour    //Text를 가지고 있는 GamgObject에 넣어두
     {
 
         _text.text = script;
-        LayoutRebuilder.ForceRebuildLayoutImmediate(_rect);
-        _parentRect.sizeDelta = new Vector2(_parentRect.rect.width, _rect.rect.height+2*_yDelta); //
-        LayoutRebuilder.ForceRebuildLayoutImmediate(_parentRect);
+        UpdateScript();
         //LayoutRebuilder.ForceRebuildLayoutImmediate(content); 사용하면 된대요!
+    }
+
+    public void UpdateScript()
+    {
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_rect);
+        _parentRect.sizeDelta = new Vector2(_parentRect.rect.width, _rect.rect.height + 2 * _yDelta); //
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_parentRect);
     }
 }

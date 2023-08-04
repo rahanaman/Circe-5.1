@@ -15,6 +15,7 @@ public class CardHandController : MonoBehaviour // 카드 패 정렬하는 Hand 오브젝�
     private void Awake()
     {
         _hand = gameObject.GetComponent<Transform>();
+        Init();
     }
 
     private void Init()
@@ -25,6 +26,11 @@ public class CardHandController : MonoBehaviour // 카드 패 정렬하는 Hand 오브젝�
     }
 
     private void AddCard(CardView card)
+    {
+
+    }
+
+    private void LayoutCard()
     {
 
     }
