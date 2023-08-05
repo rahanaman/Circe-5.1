@@ -97,7 +97,8 @@ public enum CardStateID
     전투,
     보상,
     패널,
-    도감
+    도감,
+    테스트
 }
 
 public enum TriggerID

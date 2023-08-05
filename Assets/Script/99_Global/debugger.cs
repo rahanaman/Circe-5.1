@@ -17,10 +17,11 @@ public class debugger : MonoBehaviour
     string[] strings = new string[] { "absdfda\r\ndafllkjlkasdjfljasdlkfjsdlfjlskdjflsajdlfjldajfl\r\ndfjlakdjflsajfldjalfjldsakjflsdjlfjslfkjsdlkfjabsdfda\r\ndafllkjlkasdjfljasdlkfjsdlfjlskdjflsajdlfjldajfl\r\ndfjlakdjflsajfldjalfjldsakjflsdjlfjslfkjsdlkfj" };
 
     [SerializeField] CardView _card;
-    [SerializeField] Transform _canvas;
+    [SerializeField] CardHandController _cardHand;
+    [SerializeField] Button _button;
     void Start()
-    { 
-        
+    {
+        _button.onClick.AddListener(Add);
     }
 
     // Update is called once per frame
@@ -28,6 +29,12 @@ public class debugger : MonoBehaviour
     {
         
         
+    }
+
+    private void Add()
+    {
+        CardView card = Instantiate(_card,_cardHand.transform);
+        _cardHand.AddCard(card);
     }
 
     /*

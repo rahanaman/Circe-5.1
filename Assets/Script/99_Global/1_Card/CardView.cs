@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CardView : MonoBehaviour
 {
+    [SerializeField] private Transform _transform;
     [SerializeField] private Image _background;
     [SerializeField] private RectTransform _nameRect;
     [SerializeField] private Text _nameText;
@@ -36,6 +37,18 @@ public class CardView : MonoBehaviour
     {
         var posY = _descRect.rect.height;
         _nameRect.anchoredPosition = new Vector2(_nameRect.anchoredPosition.x,posY);
+    }
+
+    public void SetTransform(Vector3 pos, Vector3 rot)
+    {
+        _transform.localPosition = pos;
+        Quaternion q = Quaternion.Euler(rot);
+        _transform.rotation = q;
+    }
+
+    public void SetScale(float scale)
+    {
+
     }
 
 }

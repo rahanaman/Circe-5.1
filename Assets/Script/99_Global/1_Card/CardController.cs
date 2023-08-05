@@ -24,6 +24,9 @@ public class CardController: MonoBehaviour
                 break;
             case CardStateID.도감:
                 break;
+            case CardStateID.테스트:
+                _handler = new 테스트용CardHandler();
+                break;  
         }
     }
 }
@@ -35,6 +38,24 @@ public interface ICardHandler
     void MouseEnter();
     void MouseDown();
     void MouseExit();
+}
+
+public class 테스트용CardHandler : ICardHandler
+{
+    public 테스트용CardHandler() { }
+    public void MouseEnter()
+    {
+        //cardcontroller battlePanel로 전달
+    }
+    public void MouseDown()
+    {
+
+    }
+
+    public void MouseExit()
+    {
+
+    }
 }
 
 public class 전투CardHandler : ICardHandler
