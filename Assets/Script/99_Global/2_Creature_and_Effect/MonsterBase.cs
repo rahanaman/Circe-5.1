@@ -7,7 +7,10 @@ public class MonsterOnBattleData : CreatureOnBattleData //BattlePanelManager¿¡¼­
 {
     public MonsterID ID { get; private set; }
 
-
+    public override void Init()
+    {
+        
+    }
     public override CreatureBase GetCreatureBase()
     {
         return DataBase.Instance.MonsterBaseList[(int)ID];

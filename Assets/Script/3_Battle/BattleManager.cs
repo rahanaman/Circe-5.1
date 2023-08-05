@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class BattleManager 
 {
-    /*// 싱글톤
-    private BattleManager _instance;
-    public BattleManager Instance
+    // 싱글톤
+    private static BattleManager _instance;
+    public static BattleManager Instance
     {
         get
         {
@@ -19,7 +19,7 @@ public class BattleManager
         }
     }
 
-    */
+    
 
     private BattleEventManager _battleEventManager = new BattleEventManager(); // EventManager
 
@@ -29,6 +29,13 @@ public class BattleManager
     public CreatureController Player;
     public CreatureOnBattleData PlayerData;
 
+    public CreatureOnBattleData OnProgressData; // 현재 행동을 하고 있는 creature에 대한 데이터
+
+    public DataCalc[] GetOnProgressDataCalcs()
+    {
+        return OnProgressData.GiveDataCalcs;
+    }
+    
     public void Init() 
     {
 

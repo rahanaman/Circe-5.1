@@ -15,15 +15,30 @@ public class °ø°ÝAction : ActionBase
     public °ø°ÝAction(int damage)
     {
         Damage = damage;
+
     }
     
     public int Damage { get; private set; }
 
     public override void Action(params CreatureOnBattleData[] targets)
     {
+        int calcData = BattleManager.Instance.GetOnProgressDataCalcs()[(int)BattleDataID.Dmg].Data(Damage);
         foreach (var target in targets)
         {
-            
+            target.ExecuteGetAction(BattleDataID.Dmg, calcData);
         }
+    }
+}
+
+public class ÈûAction : ActionBase
+{
+    public ÈûAction()
+    {
+
+    }
+
+    public override void Action(params CreatureOnBattleData[] targets)
+    {
+        
     }
 }

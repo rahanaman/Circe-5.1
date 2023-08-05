@@ -13,6 +13,11 @@ public class PlayerOnBattleData : CreatureOnBattleData // BattlePanelManager¿¡¼­
     {
         return DataBase.Instance.PlayerBaseList[(int)ID];
     }
+
+    public override void Init()
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 public abstract class PlayerBase : CreatureBase

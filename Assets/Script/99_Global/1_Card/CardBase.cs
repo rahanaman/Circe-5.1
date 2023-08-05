@@ -30,7 +30,7 @@ public abstract class CardBase
     public int Cost { get; protected set; }
     public List<EffectID> EffectList { get; protected set;}
     public int[] Data { get; protected set; }
-    public abstract void Action();
+    public abstract void Action(params CreatureOnBattleData[] targets);
 }
 
 
@@ -41,9 +41,14 @@ public class 타격Card : CardBase
         Desc = "피해를 {1} 줍니다. <color=olive>파도</color>: 피해가 1 증가합니다.";
         Data = new int[] { 5 };
     }
-    public override void Action()
+    public override void Action(params CreatureOnBattleData[] targets)
     {
-
+        int calcData = BattleManager.Instance.GetOnProgressDataCalcs()[(int)BattleDataID.Dmg].Data(Data[0]);
+        foreach (var target in targets)
+        {
+            target.ExecuteGetAction(BattleDataID.Dmg, calcData);
+        }
+        
     }
 }
 

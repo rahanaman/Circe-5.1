@@ -23,14 +23,16 @@ public enum GameStatusID
 public enum BattleDataID//전투할때 Effect에 의헤 연산이 들어갈 수 있는 데이터
 {
     None, // 트리거를 통해 사용되는 부류
-    공격,
-    방어,
+    Dmg,
+    
+    Defence,
+    힘,
     익사,
     파도의힘,
     빙결
    
 
-} // 작은 숫자 우선 연산, 같은 숫자에서는 곱셉 우선 연산
+} 
 
 public enum DataCalcID //연산 ID
 {
@@ -39,7 +41,7 @@ public enum DataCalcID //연산 ID
     mult_2,
     add_2,
     mult_3,
-}
+}// 작은 숫자 우선 연산, 같은 숫자에서는 곱셉 우선 연산
 
 public enum CharID
 {
@@ -60,7 +62,8 @@ public enum CardID
 {
     카드1,
     카드2,
-    카드3
+    카드3,
+    타격
 }
 
 public enum EffectID
@@ -226,11 +229,20 @@ public class DataBase
         {
             switch ((CardID)i)
             {
+                case CardID.타격:
+                    CardBaseList[i] = new 타격Card();
+                    break;
                 default:
                     break;
             }
         }
     }
+
+    private void GetMonsterEncounter()
+    {
+
+    }
+
 }
 
 
@@ -277,6 +289,7 @@ public class DataCalc
             else
             {
                 calc *= factors[(int)i];
+                calc += 0.01;
                 calc = Math.Truncate(calc);
             }
         }
