@@ -43,7 +43,7 @@ public class CardView : MonoBehaviour
     {
         _transform.localPosition = pos;
         Quaternion q = Quaternion.Euler(rot);
-        _transform.rotation = q;
+        _transform.localRotation = q;
     }
 
     public void SetScale(float scale)

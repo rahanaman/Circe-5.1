@@ -7,11 +7,17 @@ public class CardHandController : MonoBehaviour // Ä«µå ÆÐ Á¤·ÄÇÏ´Â Hand ¿ÀºêÁ§Æ
 {
     private Transform _hand;
 
-    [SerializeField] private Vector3 _rotLeft = new Vector3(0,0,40);
-    [SerializeField] private Vector3 _rotRight = new Vector3(0, 0, -40);
+    private  const int MAXNUM = 10; //¼ÕÆÐ ÃÖ´ë Àå¼ö
 
-    [SerializeField] private Vector3 _xleft = new Vector3(-50, 0, 0);
-    [SerializeField] private Vector3 _xright = new Vector3(50, 0, 0);
+    [SerializeField] private Vector3 _rotLeft;
+    [SerializeField] private Vector3 _rotRight;
+
+    private float _limit;
+    private float _rotLimit = 40f; // ÃÖ´ë È¸Àü °¢µµ
+    private float _yLimit = 15f;
+
+    private Vector3 _xleft;
+    private Vector3 _xright;
 
     private List<CardView> _cards = new List<CardView>();
 
@@ -25,6 +31,7 @@ public class CardHandController : MonoBehaviour // Ä«µå ÆÐ Á¤·ÄÇÏ´Â Hand ¿ÀºêÁ§Æ
     private void Init()
     {
         _cards = new List<CardView>();
+        _limit = (Screen.width / 8.0f);
         
     }
 
@@ -37,25 +44,30 @@ public class CardHandController : MonoBehaviour // Ä«µå ÆÐ Á¤·ÄÇÏ´Â Hand ¿ÀºêÁ§Æ
      private void LayoutCard()
     {
         int num = _cards.Count;
-        if(num == 1)
+        float _calLimit = _limit * (float)Math.Log(num, MAXNUM);
+        float _calRotLimit = _rotLimit *  (float)Math.Log(num, MAXNUM);
+
+        _xleft = new Vector3(-_calLimit, 0, 0);
+        _xright = new Vector3(_calLimit, 0, 0);
+        _rotLeft = new Vector3(0,0,_calRotLimit);
+        _rotRight = new Vector3(0,0,-_calRotLimit);
+
+
+        if (num == 1)
         {
             _cards[0].SetTransform(new Vector3(0,0,0), new Vector3(0, 0, 0));
         }
-        else if (num > 2)
-        {
-            for (int i = 0; i < num; i++)
-            {
-                Vector3 pos = Vector3.Lerp(_xright, _xleft, (float)i / (num - 1));
-                Vector3 rot = Vector3.Lerp(_rotLeft, _rotRight, (float)i / (num - 1));
-                _cards[i].SetTransform(pos, rot);
-            }
-        }
+        
         else
         {
             for (int i = 0; i < num; i++)
             {
-                Vector3 pos = Vector3.Lerp(_xright, _xleft, (float)i / (num-1));
-                _cards[i].SetTransform(pos, new Vector3(0, 0, 0));
+                Vector3 pos = Vector3.Lerp(_xleft, _xright, (float)i / (num - 1));
+                Vector3 rot = Vector3.Lerp(_rotLeft, _rotRight, (float)i / (num - 1));
+                //float _caly = 0;
+                float _caly = Math.Abs((_yLimit) * rot.z / _rotLimit);
+                Vector3 finalPos = new Vector3(pos.x, -_caly, pos.z);
+                _cards[i].SetTransform(finalPos, rot);
                 
             }
         }

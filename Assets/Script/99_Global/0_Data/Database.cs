@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEditor;
-using UnityEditor.AssetImporters;
 using System.Reflection;
 
 public enum DataLoadID //resource에서 읽어올 자료들 순서

@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/ScreenSize.unity
+    guid: 4eb0bce9bcb78ae468e6af98696c610a
   m_configObjects: {}
