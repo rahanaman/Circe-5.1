@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 
 public enum SaveDataField
 {
+    CharId,
     MaxHP,
     CurrentHP,
     Cards,
@@ -85,8 +86,6 @@ public class SaveData
             int len = Enum.GetValues(typeof(SaveDataField)).Length;
             for (int i = 0; i < len; ++i)
             {
-
-
                 LoadSaveData((SaveDataField)i, data[i]);
             }
         }
@@ -106,6 +105,9 @@ public class SaveData
     {
         switch (field)
         {
+            case SaveDataField.CharId:
+                _id = (CharID)int.Parse(data);
+                break;
             case SaveDataField.MaxHP:
                 _maxHP = int.Parse(data);
                 break;
@@ -166,6 +168,8 @@ public class SaveData
     private String[] GetSaveData() //세이브params 받아오기
     {
         List<string> saveFile = new List<string>();
+        // CharID
+        saveFile.Add((int)_id+"");
         //maxHP
         saveFile.Add(_maxHP + "");
         //currentHP

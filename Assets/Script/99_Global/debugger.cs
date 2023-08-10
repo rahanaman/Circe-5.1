@@ -9,14 +9,14 @@ public class debugger : MonoBehaviour
 {
     
     /*
-     * [SerializeField] GameObject sub;
+    [SerializeField] GameObject sub;
     [SerializeField] GameObject SubCon;
     [SerializeField] RectTransform image;
     [SerializeField] Scripter scripter;
      */
     string[] strings = new string[] { "absdfda\r\ndafllkjlkasdjfljasdlkfjsdlfjlskdjflsajdlfjldajfl\r\ndfjlakdjflsajfldjalfjldsakjflsdjlfjslfkjsdlkfjabsdfda\r\ndafllkjlkasdjfljasdlkfjsdlfjlskdjflsajdlfjldajfl\r\ndfjlakdjflsajfldjalfjldsakjflsdjlfjslfkjsdlkfj" };
 
-    [SerializeField] CardView _card;
+    [SerializeField] CardController _card;
     [SerializeField] CardHandController _cardHand;
     [SerializeField] Button _button;
     void Start()
@@ -33,7 +33,8 @@ public class debugger : MonoBehaviour
 
     private void Add()
     {
-        CardView card = Instantiate(_card,_cardHand.transform);
+        CardController card = Instantiate(_card, _cardHand.transform);
+        card.SetMode(CardStateID.Å×½ºÆ®);
         _cardHand.AddCard(card);
     }
 
