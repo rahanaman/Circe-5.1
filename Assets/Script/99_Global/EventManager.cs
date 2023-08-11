@@ -28,6 +28,7 @@ public class EventManager
     public delegate void VoidEvent();
 
 
+
     public CardEvent CardSelected;
     public VoidEvent UpdateCard;
 

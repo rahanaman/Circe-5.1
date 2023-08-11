@@ -7,14 +7,21 @@ using static UnityEditor.PlayerSettings;
 
 public class CardView : MonoBehaviour
 {
-    [SerializeField] private Transform _transform;
+    [SerializeField] private RectTransform _rect;
     [SerializeField] private Image _background;
     [SerializeField] private RectTransform _nameRect;
     [SerializeField] private Text _nameText;
 
     [SerializeField] private RectTransform _descRect;
     [SerializeField] private Scripter _descScripter;
+    [SerializeField] private CardController _controller;
 
+    Sequence seq;
+
+    private void Awake()
+    {
+        _rect = GetComponent<RectTransform>();
+    }
     private CardBase[] CardList() //코드 복잡도 낮추기
     {
         return DataBase.Instance.CardBaseList;
@@ -52,6 +59,8 @@ public class CardView : MonoBehaviour
 
     public void SetTransform(Vector3 pos, Vector3 rot)
     {
+        DOTween.Kill(transform);
+
         transform.localPosition = pos;
         Quaternion q = Quaternion.Euler(rot);
         transform.localRotation = q;
@@ -60,16 +69,18 @@ public class CardView : MonoBehaviour
     {
         //_transform.localPosition = pos;
         Quaternion q = Quaternion.Euler(rot);
-        _transform.localRotation = q;
+        //transform.localRotation = q;
 
-        Debug.Log(transform.localPosition); 
-        
         transform.DOLocalMove(pos, 0.5f);
+        transform.DOLocalRotate(rot, 0.2f);
+
+        
+
 
         /*
-        Sequence seq = DOTween.Sequence();
+        seq = DOTween.Sequence();
 
-        seq.Append();
+        seq.Append(transform.DOLocalMove(pos, 0.5f));
         seq.Join(transform.DOLocalRotate(rot, 0.5f));
         seq.Play();
 
@@ -79,7 +90,7 @@ public class CardView : MonoBehaviour
 
     public void SetScale(float scale)
     {
-        _transform.localScale = new Vector3(scale,scale);
+        transform.localScale = new Vector3(scale,scale);
     }
 
     #endregion 카드 Tranform 조정 (크기 위치 회전)

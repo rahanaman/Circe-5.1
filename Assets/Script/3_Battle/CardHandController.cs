@@ -18,7 +18,7 @@ public class CardHandController : MonoBehaviour // 카드 패 정렬하는 Hand 오브젝�
 
     public Vector3 _posDelta; // 카드 위에 올려놨을 때 바뀌는 좌표
     private float _posLimit;
-    private float _rotLimit = 40f; // 최대 회전 각도
+    private float _rotLimit = 30f; // 최대 회전 각도
     private float _yLimit = 15f;
 
 
@@ -121,16 +121,19 @@ public class CardHandController : MonoBehaviour // 카드 패 정렬하는 Hand 오브젝�
 
     private void OnCardSelected(CardController card)
     {
-        Debug.Log(_cards.IndexOf(card));
         foreach (var c in _cards)
         {
             c.SetScale(0.8f);
         }
-        var tmpPos = new Vector3(3*card.Rot.z, -200,0); // 회전 보정
+        var tmpPos = new Vector3(3f*card.Rot.z, -200,0); // 회전 보정
         //var tmpPos = new Vector3(0,0,0);
-        card.MoveTransform(card.Pos-tmpPos, new Vector3(0, 0, 0));
-        card.SetScale(1.2f);
+
+        Debug.Log(card.Pos - tmpPos);
         MoveCards(card);
+        
+        card.MoveTransform((card.Pos - tmpPos), new Vector3(0, 0, 0));
+        Debug.Log(card.gameObject.transform.localPosition);
+        card.SetScale(1.2f);
     }
 
 

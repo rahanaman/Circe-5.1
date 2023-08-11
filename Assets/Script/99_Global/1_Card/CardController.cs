@@ -121,10 +121,17 @@ public abstract class CardHandler : ICardHandler
 
 public class 테스트용CardHandler : CardHandler
 {
+    private bool _isWorking = false;
     public 테스트용CardHandler(CardController cardController) : base(cardController)
     {
         _cardController.SetViewTransform(new Vector3(-1200,0,0),new Vector3 (0,0,0));
     }
+
+    private void WorkDone()
+    {
+        _isWorking = false;
+    }
+
     public override void MouseEnter()
     {
         //cardcontroller battlePanel로 전달
