@@ -22,6 +22,6 @@ public abstract class MonsterBase : CreatureBase
 {
     public MonsterBase() { } // 디폴트 생성자
     public MonsterBase(int maxHP) { } // 디폴트 + 체력 설정 해야하는 경우
-    public MonsterBase(params FlagBase[] flags) { } //디폴트 + 특수 플래그 설정 해야하는 경우
+    
 
 }

@@ -708,9 +708,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69100f24239d9ef47abb52131222667f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transform: {fileID: 8992799132447878494}
-  _background: {fileID: 0}
+  _rect: {fileID: 0}
+  _background: {fileID: 8992799131480917790}
   _nameRect: {fileID: 1075174512}
-  _nameText: {fileID: 0}
+  _nameText: {fileID: 1075174513}
   _descRect: {fileID: 222146095611809457}
   _descScripter: {fileID: 9212447428673810840}
+  _subTransform: {fileID: 7913609920940699843}

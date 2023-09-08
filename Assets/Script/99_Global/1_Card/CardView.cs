@@ -14,9 +14,12 @@ public class CardView : MonoBehaviour
 
     [SerializeField] private RectTransform _descRect;
     [SerializeField] private Scripter _descScripter;
-    [SerializeField] private CardController _controller;
 
-    Sequence seq;
+    [SerializeField] private Transform _subCon;
+
+    //[SerializeField] private CardController _controller;
+
+    //Sequence seq;
 
     private void Awake()
     {
@@ -32,6 +35,8 @@ public class CardView : MonoBehaviour
         //string Name, string Desc, KeyValuePair<가중치ID, int>[] 가중치List, int Cost, List<EffectID> EffectList
         SetName(CardList()[(int)id].Name);
         SetDesc(CardList()[(int)id].Desc);
+
+
     }
 
 
@@ -74,17 +79,6 @@ public class CardView : MonoBehaviour
         transform.DOLocalMove(pos, 0.5f);
         transform.DOLocalRotate(rot, 0.2f);
 
-        
-
-
-        /*
-        seq = DOTween.Sequence();
-
-        seq.Append(transform.DOLocalMove(pos, 0.5f));
-        seq.Join(transform.DOLocalRotate(rot, 0.5f));
-        seq.Play();
-
-        */
         
     }
 

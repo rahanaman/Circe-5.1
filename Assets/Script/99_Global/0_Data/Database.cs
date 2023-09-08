@@ -182,6 +182,7 @@ public class DataBase
     public DataBase() //생성자에 초기화 함수들 넣어두는 방식
     {
         GetPlayerBase();
+        GetCardBase();
     }
 
     private void GetPlayerBase() // PlayerBase 참조

@@ -78,7 +78,7 @@ public class SaveData
 
     }
 
-    public void Load()
+    public bool Load()
     {
         if (PlayerPrefs.HasKey(SAVE))
         {
@@ -88,10 +88,12 @@ public class SaveData
             {
                 LoadSaveData((SaveDataField)i, data[i]);
             }
+            return true;
         }
         else
         {
             Debug.Log("Save 파일 없음");
+            return false;
         }
     }
 

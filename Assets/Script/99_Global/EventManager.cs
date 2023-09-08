@@ -31,6 +31,7 @@ public class EventManager
 
     public CardEvent CardSelected;
     public VoidEvent UpdateCard;
+    public CardEvent DeleteCard;
 
 
     public void CallOnCardSelected(CardController card)
@@ -42,6 +43,10 @@ public class EventManager
     {
         UpdateCard?.Invoke();
     }
-
+    
+    public void CallOnDeleteCard(CardController card)
+    {
+        DeleteCard?.Invoke(card);
+    }
 
 }

@@ -35,6 +35,8 @@ public class debugger : MonoBehaviour
     {
         CardController card = Instantiate(_card, _cardHand.transform);
         card.SetMode(CardStateID.테스트);
+        card.Init(CardID.타격);
+        card.SetCardData(new CardOnBattleData(CardID.타격));
         _cardHand.AddCard(card);
     }
 

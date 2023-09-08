@@ -27,8 +27,9 @@ public class CardHandController : MonoBehaviour // Ä«µå ÆÐ Á¤·ÄÇÏ´Â Hand ¿ÀºêÁ§Æ
 
     private void Awake()
     {
-        EventManager.Instance.CardSelected += OnCardSelected;
+        EventManager.Instance.CardSelected += CardSelected;
         EventManager.Instance.UpdateCard += UpdateCards;
+        EventManager.Instance.DeleteCard += DeleteCard;
 
         _hand = gameObject.GetComponent<Transform>();
         Init();
@@ -37,8 +38,9 @@ public class CardHandController : MonoBehaviour // Ä«µå ÆÐ Á¤·ÄÇÏ´Â Hand ¿ÀºêÁ§Æ
 
     private void OnDestroy()
     {
-        EventManager.Instance.CardSelected -= OnCardSelected;
+        EventManager.Instance.CardSelected -= CardSelected;
         EventManager.Instance.UpdateCard -= UpdateCards;
+        EventManager.Instance.DeleteCard -= DeleteCard;
     }
 
     private void Init()
@@ -75,6 +77,13 @@ public class CardHandController : MonoBehaviour // Ä«µå ÆÐ Á¤·ÄÇÏ´Â Hand ¿ÀºêÁ§Æ
                 cards[i].MoveTransform(finalPos, rot);
             }
         }
+    }
+
+    private void DeleteCard(CardController card)
+    {
+        _cards.Remove(card);
+        Destroy(card.gameObject);
+        SetCards();
     }
 
     private void UpdateCards()
@@ -119,7 +128,7 @@ public class CardHandController : MonoBehaviour // Ä«µå ÆÐ Á¤·ÄÇÏ´Â Hand ¿ÀºêÁ§Æ
     }
 
 
-    private void OnCardSelected(CardController card)
+    private void CardSelected(CardController card)
     {
         foreach (var c in _cards)
         {

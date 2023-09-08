@@ -8,6 +8,8 @@ public class CardController: MonoBehaviour
     [SerializeField]private ICardHandler _handler;
     [SerializeField] CardView _cardview;
 
+    private CardOnBattleData _data;
+
     //카드 손패를 위한 기존 위치 저장
 
     public Vector3 Pos { get; private set; }
@@ -35,6 +37,35 @@ public class CardController: MonoBehaviour
         }
     }
     
+    public void Init(CardID id)
+    {
+        _cardview.Init(id);
+    }
+
+    public void SetCardData(CardOnBattleData data)
+    {
+        _data = data;
+    }
+
+    private void SetDesc()
+    {
+        GetCalcData(_data.Data);
+    }
+
+    private int[] GetCalcData(int[] data, DataCalc calc = null)
+    {
+        
+        if(calc == null)
+        {
+            return data;
+        }
+        int[] result = new int[data.Length];
+        for(int i =0; i < data.Length; ++i)
+        {
+            result[i] = calc.Data(data[i]);
+        }
+        return result;
+    }
     public void UpdateTransform()
     {
         _cardview.MoveTransform(Pos, Rot);
@@ -111,11 +142,25 @@ public abstract class CardHandler : ICardHandler
 
     public abstract void MouseExit();
 
+    protected void OnCardClick()
+    {
+        EventManager.Instance.CallOnDeleteCard(_cardController);
+    }
     protected void SelectCard()
     {
-
         EventManager.Instance.CallOnCardSelected(_cardController);
     }
+
+    protected void UpdateCard()
+    {
+        EventManager.Instance.CallOnUpdateCard();
+    }
+
+    protected void Set()
+    {
+
+    }
+
     
 }
 
@@ -141,14 +186,16 @@ public class 테스트용CardHandler : CardHandler
     public override void MouseDown()
     {
         Debug.Log("마우스 클릭");
-        
+        OnCardClick();
+
+
     }
 
     public override void MouseExit()
     {
         
         Debug.Log("마우스 나감");
-        EventManager.Instance.CallOnUpdateCard();
+        UpdateCard();
 
     }
 }
