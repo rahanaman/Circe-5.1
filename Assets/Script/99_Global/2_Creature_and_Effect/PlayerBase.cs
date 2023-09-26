@@ -4,19 +4,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.AI;
 
-public class PlayerOnBattleData : CreatureOnBattleData // BattlePanelManager에서 가지고 있는 Player에 대한 정보. 여기 정보를 기준으로 세이브 데이터 저장
+public class PlayerOnBattleData : CreatureOnBattleData<CharID> // BattlePanelManager에서 가지고 있는 Player에 대한 정보. 여기 정보를 기준으로 세이브 데이터 저장
 {
     public CharID ID { get; private set;}
     public 속성 속성 { get; private set;}
     public List<CardOnBattleData> Cards { get; private set; }
+
+    public override void CallOnTurnBegin()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void CallOnTurnEnd()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override CreatureBase GetCreatureBase()
     {
         return DataBase.Instance.PlayerBaseList[(int)ID];
     }
 
-    public override void Init()
+    public override void Init(CharID id)
     {
-        throw new System.NotImplementedException();
+        ID = id;
     }
 }
 

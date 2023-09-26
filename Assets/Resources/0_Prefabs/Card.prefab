@@ -696,6 +696,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cardview: {fileID: 4935839805316860294}
+  _sub: {fileID: 5906877657135454898, guid: 8e7d34df04695924dab2d9d7a0bc4c0b, type: 3}
+  _subCon: {fileID: 7913609920940699843}
 --- !u!114 &4935839805316860294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,10 +710,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69100f24239d9ef47abb52131222667f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rect: {fileID: 0}
+  _rect: {fileID: 8992799132447878494}
   _background: {fileID: 8992799131480917790}
   _nameRect: {fileID: 1075174512}
   _nameText: {fileID: 1075174513}
   _descRect: {fileID: 222146095611809457}
   _descScripter: {fileID: 9212447428673810840}
-  _subTransform: {fileID: 7913609920940699843}
+  _subCon: {fileID: 7913609920940699843}

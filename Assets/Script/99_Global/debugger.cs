@@ -19,9 +19,17 @@ public class debugger : MonoBehaviour
     [SerializeField] CardController _card;
     [SerializeField] CardHandController _cardHand;
     [SerializeField] Button _button;
+    [SerializeField] Button _button2;
+
+    MonsterOnBattleData _monsterOnBattleData;
     void Start()
     {
+        _monsterOnBattleData = new MonsterOnBattleData();
+        _monsterOnBattleData.Init(MonsterID.debug);
         _button.onClick.AddListener(Add);
+        _button2.onClick.AddListener(AddTurn);
+        //BattleController.Instance.Init();
+
     }
 
     // Update is called once per frame
@@ -31,12 +39,21 @@ public class debugger : MonoBehaviour
         
     }
 
+    private void AddTurn()
+    {
+        BattleController.Instance.TurnNumber++;
+        _monsterOnBattleData.CallOnTurnEnd();
+        _monsterOnBattleData.InvokeAction();
+
+    }
+
     private void Add()
     {
         CardController card = Instantiate(_card, _cardHand.transform);
         card.SetMode(CardStateID.테스트);
-        card.Init(CardID.타격);
+
         card.SetCardData(new CardOnBattleData(CardID.타격));
+        card.Init(CardID.타격);
         _cardHand.AddCard(card);
     }
 

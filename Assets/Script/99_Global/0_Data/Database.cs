@@ -52,10 +52,7 @@ public enum CharID
 
 public enum MonsterID
 {
-    몬스터1,
-    몬스터2,
-    몬스터3,
-    몬스터4
+    debug
 }
 public enum CardID
 {
@@ -68,12 +65,14 @@ public enum CardID
 public enum EffectID
 {
     경감,
+    /*
     파도,
     썰물,
     재생,
     익사,
     파도의힘,
     빙결
+    */
 
 }
 public enum SoundID
@@ -102,6 +101,10 @@ public enum CardStateID
 
 public enum TriggerID
 {
+    TurnBegin,
+    TurnEnd
+
+    /*
     None, // 카드 사용처럼 다른 입력을 통해서 이루어지는 트리거, 루틴 진행에 따라 자동적으로 콜백되어야 하는 트리거를 제외한 모든 트리거
     TurnBegin,
     TurnEnd,
@@ -117,6 +120,7 @@ public enum TriggerID
     * 플레이어 내턴 시작 트리거 -> 에너미 적 턴 시작 트리거 -> 플레이어 턴 시작 고정 루틴 ->플레이어 내턴 종료 트리거 -> 에너미 적턴 종료 트리거 -> 플레이어 턴 종료 고정 루틴 -> 
     * 에너미 내턴 시작 트리거 -> 플레이어 적 턴시작 트리거 -> 적 턴 시작 고정 루틴 -> 에너미 내턴 종료 트리거 -> 플레이어 적턴종료 트리거 -> 적 턴 종료 고정 루틴 -> 반복
     */
+    
 
 }
 
@@ -160,14 +164,16 @@ public enum 속성
 }
 
 
-public class DataBase
+public class DataBase //게임 처음으로 실행할 때 해주는 것들
 {
     public CardBase[] CardBaseList { get; private set; }
     public PlayerBase[] PlayerBaseList { get; private set; }
     public MonsterBase[] MonsterBaseList { get; private set; }
 
+    public EffectDataBase[] EffectDataBaseList { get; private set; }
 
-    private static DataBase _instance;
+
+    private static DataBase _instance;      
     public static DataBase Instance
     {
         get
@@ -183,11 +189,13 @@ public class DataBase
     {
         GetPlayerBase();
         GetCardBase();
+        GetEffectDataBase();
+        GetMonsterBase();
     }
 
     private void GetPlayerBase() // PlayerBase 참조
     {
-        PlayerBaseList = new PlayerBase[System.Enum.GetValues(typeof(CharID)).Length];
+        PlayerBaseList = new PlayerBase[Enum.GetValues(typeof(CharID)).Length];
         for(int i = 0; i < PlayerBaseList.Length; i++)
         {
             switch ((CharID)i)
@@ -211,11 +219,14 @@ public class DataBase
 
     private void GetMonsterBase() // MonsterBase 참조
     {
-        MonsterBaseList = new MonsterBase[System.Enum.GetValues(typeof(MonsterID)).Length];
+        MonsterBaseList = new MonsterBase[Enum.GetValues(typeof(MonsterID)).Length];
         for (int i = 0; i < MonsterBaseList.Length; i++)
         {
             switch ((MonsterID)i)
             {
+                case MonsterID.debug:
+                    MonsterBaseList[i] = new DebugMonster();
+                    break;
                 default:
                 break;
 
@@ -225,7 +236,7 @@ public class DataBase
 
     private void GetCardBase()
     {
-        CardBaseList = new CardBase[System.Enum.GetValues(typeof(CardID)).Length];
+        CardBaseList = new CardBase[Enum.GetValues(typeof(CardID)).Length];
         for(int i=0;i < CardBaseList.Length; i++)
         {
             switch ((CardID)i)
@@ -242,6 +253,24 @@ public class DataBase
     private void GetMonsterEncounter()
     {
 
+    }
+
+
+    private void GetEffectDataBase() //effect에 대한 descripion을 로드해옴.
+    {  
+        EffectDataBaseList = new EffectDataBase[Enum.GetValues(typeof(EffectID)).Length];
+        for(int i = 0;i < EffectDataBaseList.Length; i++)
+        {
+            switch ((EffectID)i)
+            {
+                case EffectID.경감:
+                    EffectDataBaseList[i] = new 경감EffectDataBase();
+                    break;
+                default:
+                    break;
+
+            }
+        }
     }
 
 }

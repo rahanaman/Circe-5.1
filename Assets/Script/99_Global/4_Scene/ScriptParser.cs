@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using UnityEngine;
 
-public class ScriptParser
+public class ScriptParser: MonoBehaviour
 {
     private static string NUM_PARSE = @"{[\d]*}";
 
@@ -10,6 +11,7 @@ public class ScriptParser
     {
         string str = desc;
         MatchCollection mc = Regex.Matches(str, NUM_PARSE);
+        
         foreach (Match m in mc)
         {
             string value = m.Value;

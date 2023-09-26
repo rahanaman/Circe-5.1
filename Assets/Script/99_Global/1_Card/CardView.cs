@@ -34,13 +34,16 @@ public class CardView : MonoBehaviour
     {
         //string Name, string Desc, KeyValuePair<가중치ID, int>[] 가중치List, int Cost, List<EffectID> EffectList
         SetName(CardList()[(int)id].Name);
-        SetDesc(CardList()[(int)id].Desc);
-
 
     }
 
+    public void SetSub(bool isActive)
+    {
+        _subCon.gameObject.SetActive(isActive);
+    }
+    #region 카드 서브, 설명, 이름 설정 및 위치 조정
 
-    #region 카드 설명, 이름 설정 및 위치 조정
+
     public void SetDesc(string str)
     {
         _descScripter.Script(str);

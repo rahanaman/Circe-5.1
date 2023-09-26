@@ -24,12 +24,12 @@ public class BattleManager
     private BattleEventManager _battleEventManager = new BattleEventManager(); // EventManager
 
     public List<CreatureController> Monsters;
-    public List<CreatureOnBattleData> MonstersData;
+    public List<MonsterOnBattleData> MonstersData;
 
     public CreatureController Player;
-    public CreatureOnBattleData PlayerData;
+    public PlayerOnBattleData PlayerData;
 
-    public CreatureOnBattleData OnProgressData; // 현재 행동을 하고 있는 creature에 대한 데이터
+    public OnBattleData OnProgressData; // 현재 행동을 하고 있는 creature에 대한 데이터
 
     public DataCalc[] GetOnProgressDataCalcs()
     {

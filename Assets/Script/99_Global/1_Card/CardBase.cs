@@ -32,9 +32,10 @@ public abstract class CardBase
     public List<EffectID> EffectList { get; protected set;}
     public int[] Data { get; protected set; }
 
-    public string[] Subs { get; protected set; }
+    public EffectID[] Subs { get; protected set; }
 
-    public abstract void Action(params CreatureOnBattleData[] targets);
+
+    public abstract void Action(OnBattleData[] targets);
 }
 
 
@@ -43,11 +44,12 @@ public class 타격Card : CardBase
     public 타격Card()
     {
         Name = "타격";
-        Desc = "피해를 {1} 줍니다. <color=olive>파도</color>: 피해가 1 증가합니다.";
+        Desc = "피해를 {0} 줍니다. <color=olive>파도</color>: 피해가 1 증가합니다.";
         Data = new int[] { 5 };
-        Subs = new string[] { "<b>아진투타</b>\r\n\r\n롱카어로 '좋은 밤 보내길'이라는 뜻이야.롱카어로 '좋은 밤 보내길'이라는 뜻이야." };
+
+        //Subs = new EffectID[] { EffectID.경감 };
     }
-    public override void Action(params CreatureOnBattleData[] targets)
+    public override void Action(OnBattleData[] targets)
     {
         int calcData = BattleManager.Instance.GetOnProgressDataCalcs()[(int)BattleDataID.Dmg].Data(Data[0]);
         foreach (var target in targets)

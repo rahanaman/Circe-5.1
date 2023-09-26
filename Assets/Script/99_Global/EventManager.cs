@@ -29,14 +29,14 @@ public class EventManager
 
 
 
-    public CardEvent CardSelected;
+    public CardEvent CardMouseOver;
     public VoidEvent UpdateCard;
     public CardEvent DeleteCard;
 
 
-    public void CallOnCardSelected(CardController card)
+    public void CallOnCardMouseOver(CardController card)
     {
-        CardSelected?.Invoke(card);
+        CardMouseOver?.Invoke(card);
     }
 
     public void CallOnUpdateCard()

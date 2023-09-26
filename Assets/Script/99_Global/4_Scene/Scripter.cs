@@ -30,7 +30,7 @@ public class Scripter: MonoBehaviour    //Text를 가지고 있는 GamgObject에 넣어두
         //LayoutRebuilder.ForceRebuildLayoutImmediate(content); 사용하면 된대요!
     }
 
-    public void UpdateScript()
+    private void UpdateScript()
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(_rect);
         _parentRect.sizeDelta = new Vector2(_parentRect.rect.width, _rect.rect.height + 2 * _yDelta); //

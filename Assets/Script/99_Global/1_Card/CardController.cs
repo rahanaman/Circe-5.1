@@ -7,8 +7,19 @@ public class CardController: MonoBehaviour
 {
     [SerializeField]private ICardHandler _handler;
     [SerializeField] CardView _cardview;
+    [SerializeField] Scripter _sub;
+
+    [SerializeField] private Transform _subCon;
 
     private CardOnBattleData _data;
+
+    private CardBase _baseData
+    {
+        get
+        {
+            return DataBase.Instance.CardBaseList[(int)_data.ID];
+        }
+    }
 
     //카드 손패를 위한 기존 위치 저장
 
@@ -40,6 +51,8 @@ public class CardController: MonoBehaviour
     public void Init(CardID id)
     {
         _cardview.Init(id);
+        SetDesc();
+        InitSub();
     }
 
     public void SetCardData(CardOnBattleData data)
@@ -49,7 +62,26 @@ public class CardController: MonoBehaviour
 
     private void SetDesc()
     {
-        GetCalcData(_data.Data);
+        int[] calcData = GetCalcData(_data.Data);
+        _cardview.SetDesc(ScriptParser.Parse(_baseData.Desc,calcData));
+    }
+
+    private void InitSub()
+    {
+        EffectID[] subs = _baseData.Subs;
+        /*
+        foreach (var s in subs)
+        {
+            var sub = Instantiate(_sub, _subCon);
+            sub.Script(s);
+        }
+        */
+        _subCon.gameObject.SetActive(false);
+    }
+
+    public void SetSub(bool isActive)
+    {
+        _cardview.SetSub(isActive);
     }
 
     private int[] GetCalcData(int[] data, DataCalc calc = null)
@@ -142,13 +174,13 @@ public abstract class CardHandler : ICardHandler
 
     public abstract void MouseExit();
 
-    protected void OnCardClick()
+    protected void CardClick()
     {
         EventManager.Instance.CallOnDeleteCard(_cardController);
     }
-    protected void SelectCard()
+    protected void CardMouseOver()
     {
-        EventManager.Instance.CallOnCardSelected(_cardController);
+        EventManager.Instance.CallOnCardMouseOver(_cardController);
     }
 
     protected void UpdateCard()
@@ -181,12 +213,12 @@ public class 테스트용CardHandler : CardHandler
     {
         //cardcontroller battlePanel로 전달
         Debug.Log("마우스 들어옴");
-        SelectCard();
+        CardMouseOver();
     }
     public override void MouseDown()
     {
         Debug.Log("마우스 클릭");
-        OnCardClick();
+        CardClick();
 
 
     }

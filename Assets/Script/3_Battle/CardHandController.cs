@@ -27,7 +27,7 @@ public class CardHandController : MonoBehaviour // Ä«µå ÆÐ Á¤·ÄÇÏ´Â Hand ¿ÀºêÁ§Æ
 
     private void Awake()
     {
-        EventManager.Instance.CardSelected += CardSelected;
+        EventManager.Instance.CardMouseOver += OnMouseOver;
         EventManager.Instance.UpdateCard += UpdateCards;
         EventManager.Instance.DeleteCard += DeleteCard;
 
@@ -38,7 +38,7 @@ public class CardHandController : MonoBehaviour // Ä«µå ÆÐ Á¤·ÄÇÏ´Â Hand ¿ÀºêÁ§Æ
 
     private void OnDestroy()
     {
-        EventManager.Instance.CardSelected -= CardSelected;
+        EventManager.Instance.CardMouseOver -= OnMouseOver;
         EventManager.Instance.UpdateCard -= UpdateCards;
         EventManager.Instance.DeleteCard -= DeleteCard;
     }
@@ -91,6 +91,7 @@ public class CardHandController : MonoBehaviour // Ä«µå ÆÐ Á¤·ÄÇÏ´Â Hand ¿ÀºêÁ§Æ
         foreach (var card in _cards)
         {
             card.UpdateTransform();
+            card.SetSub(false);
         }
     }
 
@@ -128,22 +129,27 @@ public class CardHandController : MonoBehaviour // Ä«µå ÆÐ Á¤·ÄÇÏ´Â Hand ¿ÀºêÁ§Æ
     }
 
 
-    private void CardSelected(CardController card)
+    private void OnMouseOver(CardController card)
     {
         foreach (var c in _cards)
         {
             c.SetScale(0.8f);
         }
-        var tmpPos = new Vector3(3f*card.Rot.z, -200,0); // È¸Àü º¸Á¤
+        var tmpPos = new Vector3(3f*card.Rot.z, -250f,0); // È¸Àü º¸Á¤
         //var tmpPos = new Vector3(0,0,0);
 
-        Debug.Log(card.Pos - tmpPos);
+        //Debug.Log(card.Pos - tmpPos);
         MoveCards(card);
         
         card.MoveTransform((card.Pos - tmpPos), new Vector3(0, 0, 0));
-        Debug.Log(card.gameObject.transform.localPosition);
+        //Debug.Log(card.gameObject.transform.localPosition);
         card.SetScale(1.2f);
+        //Ä«µå ¼³¸í ¶ç¿ì±â
+        card.SetSub(true);
+
     }
+
+    
 
 
     private void MoveCards(CardController card)
